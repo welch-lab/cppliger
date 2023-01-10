@@ -2,7 +2,8 @@
 //
 
 #include "cppliger.h"
-
+#include "../vendor/seurat/ModularityOptimizer.h"
+#include <libleidenalg/libleidenalg_export.h>
 using namespace std;
 
 int main()

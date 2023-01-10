@@ -6,3 +6,4 @@
 #include <iostream>
 
 // TODO: Reference additional headers your program requires here.
+#include "../vendor/seurat/ModularityOptimizer.h"

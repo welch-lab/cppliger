@@ -1,0 +1,14 @@
+{
+  "name": "cppliger",
+  "version-string": "0.0.1",
+  "dependencies": [
+    "eigen3",
+    "armadillo",
+    "libleidenalg",
+    {
+      "name": "highfive",
+      "default-features": false,
+      "features": [ "eigen3" ]
+    }
+  ]
+}

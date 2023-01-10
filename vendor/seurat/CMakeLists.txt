@@ -1,0 +1,1 @@
+add_library(ModularityOptimizer STATIC ModularityOptimizer.cpp ModularityOptimizer.h)
