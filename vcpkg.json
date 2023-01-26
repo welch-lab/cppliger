@@ -5,11 +5,24 @@
     "eigen3",
     "armadillo",
     "libleidenalg",
-    "pybind11",
     {
       "name": "highfive",
       "default-features": false,
       "features": [ "eigen3" ]
     }
-  ]
+  ],
+  "$default-features-explanation": "When used transitively, no frontends will be built.",
+  "default-features": [],
+  "features": {
+    "rcpp": {
+      "description": "The Rcpp frontend"
+    },
+    "python": {
+      "description": "The Python frontend",
+      "supports": "!mingw",
+      "dependencies": [
+        "pybind11"
+      ]
+    }
+  }
 }
