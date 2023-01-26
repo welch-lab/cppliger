@@ -5,6 +5,7 @@
     "eigen3",
     "armadillo",
     "libleidenalg",
+    "pybind11",
     {
       "name": "highfive",
       "default-features": false,

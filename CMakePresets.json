@@ -12,8 +12,8 @@
         "CMAKE_TOOLCHAIN_FILE": {
           "value": "C:\\Users\\andrew\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
           "type": "FILEPATH"
-          }
-        },
+        }
+      },
         "condition": {
           "type": "equals",
           "lhs": "${hostSystemName}",
@@ -21,9 +21,9 @@
         }
       },
     {
-      "name": "x64-debug",
       "displayName": "x64 Debug",
       "inherits": "windows-base",
+      "name": "x64-debug",
       "architecture": {
         "value": "x64",
         "strategy": "external"

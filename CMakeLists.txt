@@ -1,19 +1,56 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
-#
-cmake_minimum_required (VERSION 3.20)
-set(CMAKE_TOOLCHAIN_FILE "vcpkg/scripts/buildsystems/vcpkg.cmake"
-  CACHE STRING "Vcpkg toolchain file")
+cmake_minimum_required(VERSION 3.15)
+project(cppliger)
 
-project ("cppliger")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
-find_package(Eigen3 CONFIG REQUIRED)
-find_package(Armadillo CONFIG REQUIRED)
-find_package(igraph CONFIG REQUIRED)
-find_package(libleidenalg CONFIG REQUIRED)
-find_package(HighFive CONFIG REQUIRED)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Include sub-projects.
+if (MSVC)
+    # warning level 4 and all warnings as errors
+    add_compile_options(/W4 /WX)
+else ()
+    # lots of warnings and all warnings as errors
+    add_compile_options(-Wall -Wextra -Wold-style-cast -pedantic -Werror)
+endif ()
 
-add_subdirectory ("vendor")
-add_subdirectory ("cppliger")
+option(BUILD_RPACKAGE "Build RPackage bindings" ON)
+option(BUILD_PYPACKAGE "Build Python package bindings" ON)
+
+INCLUDE(CheckIncludeFileCXX)
+CHECK_INCLUDE_FILE_CXX(span HAS_SPAN)
+if (NOT HAS_SPAN)
+    message(FATAL_ERROR "Could not find span header, but it is required for the numpy bindings")
+endif ()
+
+# version handling
+set(cppliger_VERSION "0.0.1")
+add_subdirectory(src/cppliger)
+
+define_property(TARGET PROPERTY Package_Name
+        BRIEF_DOCS "The name of R/Python package to be installed"
+        FULL_DOCS "The name of R/Python package to be installed"
+        )
+
+enable_testing()
+if (BUILD_RPACKAGE)
+    if(WIN32 AND NOT MINGW)
+        message(WARNING "R packages on Windows are only supported using MINGW as a compiler. "
+                "Disabling building R package.")
+    else()
+        add_subdirectory(src/RPackage)
+        add_subdirectory(tests/R)
+    endif()
+endif ()
+
+if (BUILD_PYPACKAGE)
+    if(WIN32 AND MINGW)
+            message(WARNING "Python packages on Windows are only supported using MINGW as a compiler. "
+                   "Disabling building Python package.")
+    else()
+    find_package(Python REQUIRED COMPONENTS Interpreter Development)
+    add_subdirectory(src/Python)
+    add_subdirectory(tests/Python)
+    endif()
+endif ()
