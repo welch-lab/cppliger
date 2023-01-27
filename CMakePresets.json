@@ -13,14 +13,14 @@
           "value": "C:\\Users\\andrew\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
           "type": "FILEPATH"
         },
-        "VCPKG_MANIFEST_FEATURES":  "python"
+        "VCPKG_MANIFEST_FEATURES": "python"
       },
-        "condition": {
-          "type": "equals",
-          "lhs": "${hostSystemName}",
-          "rhs": "Windows"
-        }
-      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
     {
       "displayName": "x64 Debug",
       "inherits": "windows-base",
@@ -67,7 +67,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "installDir": "${sourceDir}/out/install/${presetName}",
-      "environment": {"PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/local/bin;C:/msys64/usr/bin;C:/msys64/bin;C:/Program Files/dotnet/;C:/WINDOWS/system32;C:/WINDOWS;C:/WINDOWS/System32/Wbem;C:/WINDOWS/System32/WindowsPowerShell/v1.0/;C:/WINDOWS/System32/OpenSSH/;C:/Program Files/Git/cmd"},
+      "environment": { "PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/local/bin;C:/msys64/usr/bin;C:/msys64/bin;C:/Program Files/dotnet/;C:/WINDOWS/system32;C:/WINDOWS;C:/WINDOWS/System32/Wbem;C:/WINDOWS/System32/WindowsPowerShell/v1.0/;C:/WINDOWS/System32/OpenSSH/;C:/Program Files/Git/cmd" },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "gcc.exe",
         "CMAKE_CXX_COMPILER": "gcc.exe",
@@ -77,76 +77,76 @@
         }
       }
     },
-      {
-        "displayName": "x64 MSYS2 Debug",
-        "inherits": "windows-mingw-base",
-        "name": "x64-mingw-debug",
-        "architecture": {
-          "value": "x64",
-          "strategy": "external"
-        },
-        "cacheVariables": {
-          "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
-          "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
-          "CMAKE_BUILD_TYPE": "Debug"
+    {
+      "displayName": "x64 MSYS2 Debug",
+      "inherits": "windows-mingw-base",
+      "name": "x64-mingw-debug",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+        "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "x64-mingw-release",
+      "displayName": "x64 MSYS2 Release",
+      "inherits": "x64-mingw-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "x86-mingw-debug",
+      "displayName": "x86 MSYS2 Debug",
+      "inherits": "windows-mingw-base",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
+      }
+    },
+    {
+      "name": "x86-mingw-release",
+      "displayName": "x86 MSYS2 Release",
+      "inherits": "x86-mingw-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "gcc",
+        "VCPKG_MANIFEST_FEATURES": "python;rcpp",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "/mnt/c/users/andrew/vcpkg/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
         }
       },
-      {
-        "name": "x64-mingw-release",
-        "displayName": "x64 MSYS2 Release",
-        "inherits": "x64-mingw-debug",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Release"
-        }
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
       },
-      {
-        "name": "x86-mingw-debug",
-        "displayName": "x86 MSYS2 Debug",
-        "inherits": "windows-mingw-base",
-        "architecture": {
-          "value": "x86",
-          "strategy": "external"
-        },
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Debug",
-          "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
-        }
-      },
-      {
-        "name": "x86-mingw-release",
-        "displayName": "x86 MSYS2 Release",
-        "inherits": "x86-mingw-debug",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Release"
-        }
-      },
-      {
-        "binaryDir": "${sourceDir}/out/build/${presetName}",
-        "cacheVariables": {
-          "CMAKE_TOOLCHAIN_FILE": {
-            "value": "/home/andrew/vcpkg/scripts/buildsystems/vcpkg.cmake",
-            "type": "FILEPATH"
-          },
-          "CMAKE_BUILD_TYPE": "Debug",
-          "CMAKE_C_COMPILER": "gcc",
-          "CMAKE_CXX_COMPILER": "g++",
-          "CMAKE_MAKE_PROGRAM": "ninja"
-        },
-        "condition": {
-          "type": "equals",
-          "lhs": "${hostSystemName}",
-          "rhs": "Linux"
-        },
-        "displayName": "Linux Debug",
-        "generator": "Ninja",
-        "installDir": "${sourceDir}/out/install/${presetName}",
-        "name": "linux-debug",
-        "vendor": {
-          "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-            "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
-          }
+      "displayName": "Linux Debug",
+      "generator": "Ninja",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "name": "linux-debug",
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
         }
       }
+    }
   ],
   "version": 4
 }
