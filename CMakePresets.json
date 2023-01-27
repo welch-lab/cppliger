@@ -12,7 +12,8 @@
         "CMAKE_TOOLCHAIN_FILE": {
           "value": "C:\\Users\\andrew\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
           "type": "FILEPATH"
-        }
+        },
+        "VCPKG_MANIFEST_FEATURES":  "python"
       },
         "condition": {
           "type": "equals",
@@ -66,11 +67,12 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "installDir": "${sourceDir}/out/install/${presetName}",
+      "environment": {"PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/local/bin;C:/msys64/usr/bin;C:/msys64/bin;C:/Program Files/dotnet/;C:/WINDOWS/system32;C:/WINDOWS;C:/WINDOWS/System32/Wbem;C:/WINDOWS/System32/WindowsPowerShell/v1.0/;C:/WINDOWS/System32/OpenSSH/;C:/Program Files/Git/cmd"},
       "cacheVariables": {
         "CMAKE_C_COMPILER": "gcc.exe",
         "CMAKE_CXX_COMPILER": "gcc.exe",
         "CMAKE_TOOLCHAIN_FILE": {
-          "value": "C:\\Users\\andrew\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+          "value": "C:/Users/andrew/vcpkg/scripts/buildsystems/vcpkg.cmake",
           "type": "FILEPATH"
         }
       }
@@ -85,6 +87,7 @@
         },
         "cacheVariables": {
           "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+          "VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
           "CMAKE_BUILD_TYPE": "Debug"
         }
       },

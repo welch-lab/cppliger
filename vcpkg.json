@@ -19,7 +19,7 @@
     },
     "python": {
       "description": "The Python frontend",
-      "supports": "!mingw",
+      "supports": "!mingw &!uwp",
       "dependencies": [
         "pybind11"
       ]
